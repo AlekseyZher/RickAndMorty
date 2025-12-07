@@ -1,0 +1,36 @@
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.1) rotate(15deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+.large {
+  animation: loading 2s ease-in-out infinite;
+}
+
+.small {
+  animation: loading 2s ease-in-out infinite;
+}
+
+.title {
+  text-align: center;
+  color: var(--color-text-black);
+  font-size: 18px;
+  font-weight: 700;
+}

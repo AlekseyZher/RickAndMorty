@@ -1,0 +1,25 @@
+@use './reset.scss';
+
+:root {
+  --roboto-font-family: 'Roboto', sans-serif;
+  --color-bg-white: #fff;
+  --color-text-black: #000000de;
+  --color-text-gray: #0009;
+  --color-status-green: #12b800;
+  --color-status-red: #df0000;
+  --color-status-orange: #f90;
+  --color-shadow: #cccbcb;
+  --color-border: #00000080;
+}
+
+body {
+  height: 100hv;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
