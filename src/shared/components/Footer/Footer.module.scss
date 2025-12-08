@@ -1,0 +1,21 @@
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -4px 6px -1px var(--color-shadow);
+}
+
+.title {
+  color: var(--color-text-black);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.link {
+  color: var(--color-text-black);
+}
