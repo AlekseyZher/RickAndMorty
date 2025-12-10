@@ -1,6 +1,7 @@
+import { Route, Routes } from 'react-router-dom';
+
 import { Character } from '@/pages/Character/Character';
 import { CharactersList } from '@/pages/CharactersList/CharactersList';
-import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

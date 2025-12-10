@@ -1,9 +1,10 @@
-import LogoIcon from './icons/logo.svg?react';
-import LangIcon from './icons/lang.svg?react';
-import ThemeIcon from './icons/theme.svg?react';
 import ArrowBackIcon from './icons/arrow_back.svg?react';
-import LargeLogo from './large-logo.png';
+import ArrowDropClickLarge from './icons/arrow_drop_large.svg?react';
+import LangIcon from './icons/lang.svg?react';
+import LogoIcon from './icons/logo.svg?react';
+import ThemeIcon from './icons/theme.svg?react';
 import LargeLoading from './large-loading.png';
+import LargeLogo from './large-logo.png';
 import SmallLoading from './small-loading.png';
 
 export {
@@ -13,5 +14,6 @@ export {
   ArrowBackIcon,
   LargeLogo,
   LargeLoading,
-  SmallLoading
+  SmallLoading,
+  ArrowDropClickLarge
 };

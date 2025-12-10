@@ -1,5 +1,6 @@
 import { LargeLoading } from '@/assets';
 import { SmallLoading } from '@/assets';
+
 import cls from './Loader.module.scss';
 
 interface LoaderProps {

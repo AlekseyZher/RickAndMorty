@@ -1,7 +1,9 @@
 import type { PropsWithChildren } from 'react';
-import cls from './Layout.module.scss';
-import { Header } from '../Header/Header';
+
 import { Footer } from '../Footer/Footer';
+import { Header } from '../Header/Header';
+
+import cls from './Layout.module.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (

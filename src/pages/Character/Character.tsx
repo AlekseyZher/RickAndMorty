@@ -1,5 +1,6 @@
-import { Layout, Loader } from '@/shared/components';
 import { ArrowBackIcon } from '@/assets';
+import { Layout, Loader } from '@/shared/components';
+
 import cls from './Character.module.scss';
 
 export const Character = () => {

@@ -1,5 +1,6 @@
 import { LargeLogo } from '@/assets';
 import { Layout, Loader } from '@/shared/components';
+
 import cls from './CharactersList.module.scss';
 
 export const CharactersList = () => {

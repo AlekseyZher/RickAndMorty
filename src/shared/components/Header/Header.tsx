@@ -1,4 +1,5 @@
 import { LogoIcon, ThemeIcon, LangIcon } from '@/assets';
+
 import cls from './Header.module.scss';
 
 export const Header = () => {
