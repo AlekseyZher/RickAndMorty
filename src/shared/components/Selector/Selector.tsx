@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowDropClickLarge } from '@/assets';
 import { classNames } from '@/shared/helpers';
 
-import classes from './Selector.module.scss';
+import styles from './Selector.module.scss';
 
 export interface Option {
   label: string;
@@ -13,14 +13,14 @@ export interface Option {
 type SelectOptionContentProps = Partial<Option>;
 
 export const DefaultSelectOptionContent = (props: SelectOptionContentProps) => {
-  return <>{props.value}</>;
+  return <>{props.label}</>;
 };
 
 export interface SelectProps {
   options: Option[];
   onChange: (value: string) => void;
+  value: string;
   variant?: 'large' | 'small';
-  value?: string;
   placeholder?: string;
   SelectorOptionComponent?: React.FC<SelectOptionContentProps>;
 }
@@ -30,13 +30,14 @@ export const Selector = (props: SelectProps) => {
     options,
     variant = 'large',
     placeholder = '',
+    value,
     onChange,
     SelectorOptionComponent = DefaultSelectOptionContent
   } = props;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<Option | null>(null);
   const selectRef = useRef<HTMLDivElement>(null);
+  const selectedOption = options.find((item) => item.value === value) ?? null;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -55,57 +56,63 @@ export const Selector = (props: SelectProps) => {
   }, []);
 
   const handleClick = () => setIsOpen(!isOpen);
-
   const handleClickOption = (item: Option) => {
-    setSelected(item);
     setIsOpen(false);
     onChange?.(item.value);
   };
 
   return (
     <div
-      className={classNames(classes.selector, {
-        [classes.small]: variant === 'small'
-      })}
       ref={selectRef}
+      className={classNames(styles.selector, {
+        [styles.small]: variant === 'small'
+      })}
     >
       <button
         type='button'
-        className={classNames(classes.button, {
-          [classes.small]: variant === 'small'
+        className={classNames(styles.button, {
+          [styles.small]: variant === 'small'
         })}
         onClick={handleClick}
       >
-        {variant === 'small' ? (
-          <SelectorOptionComponent value={selected?.label || placeholder} />
+        {selectedOption ? (
+          <span>
+            <SelectorOptionComponent
+              label={selectedOption.label}
+              value={selectedOption.value}
+            />
+          </span>
         ) : (
-          <SelectorOptionComponent value={selected?.label || placeholder} />
+          placeholder
         )}
+
         <ArrowDropClickLarge
-          className={classNames(classes.arrowBtn, {
-            [classes.open]: isOpen,
-            [classes.small]: variant === 'small'
+          className={classNames(styles.arrowBtn, {
+            [styles.open]: isOpen,
+            [styles.small]: variant === 'small'
           })}
         />
       </button>
-      {isOpen && options.length && (
+
+      {isOpen && options.length > 0 && (
         <ul
-          className={classNames(classes.selectOptions, {
-            [classes.optionsSmall]: variant === 'small'
+          className={classNames(styles.selectOptions, {
+            [styles.optionsSmall]: variant === 'small' //
           })}
-          role='listbox'
         >
           {options.map((item) => (
             <li
               key={item.value}
-              className={classNames(classes.selectOption, {
-                [classes.optionSelected]: item.value === selected?.value,
-                [classes.optionsSmall]: variant === 'small'
+              className={classNames(styles.selectOption, {
+                [styles.optionSelected]: item.value === value,
+                [styles.small]: variant === 'small'
               })}
-              role='option'
               onClick={() => handleClickOption(item)}
             >
-              <SelectorOptionComponent value={item.label} />
+              <SelectorOptionComponent
+                label={item.label}
+                value={item.value}
+              />
             </li>
           ))}
         </ul>

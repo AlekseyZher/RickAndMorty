@@ -2,13 +2,13 @@ import type { PropsWithChildren } from 'react';
 
 import { Footer, Header } from '@/shared/components';
 
-import classes from './Layout.module.scss';
+import styles from './Layout.module.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div className={`${classes.layout}`}>
+    <div className={styles.layout}>
       <Header />
-      <main className={classes.main}>{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </div>
   );

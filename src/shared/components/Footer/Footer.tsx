@@ -1,15 +1,15 @@
-import classes from './Footer.module.scss';
+import styles from './Footer.module.scss';
 
 export const Footer = () => {
   return (
-    <footer className={classes.footer}>
-      <p className={classes.title}>
+    <footer className={styles.footer}>
+      <p className={styles.title}>
         Made with love by{' '}
         <a
           href='https://t.me/AleksZh93'
           target='_blank'
           rel='noopener noreferrer'
-          className={classes.link}
+          className={styles.link}
         >
           @AleksZh93
         </a>
