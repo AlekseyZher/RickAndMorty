@@ -1,25 +1,25 @@
 import { LogoIcon, ThemeIcon, LangIcon } from '@/assets';
 
-import cls from './Header.module.scss';
+import classes from './Header.module.scss';
 
 export const Header = () => {
   return (
-    <header className={cls.header}>
-      <div className={`container ${cls.headerContent}`}>
-        <div className={cls.headerLogo}>
+    <header className={classes.header}>
+      <div className={`container ${classes.headerContent}`}>
+        <div className={classes.headerLogo}>
           <LogoIcon />
         </div>
-        <div className={cls.headerButtonGroup}>
+        <div className={classes.headerButtonGroup}>
           <button
             type='button'
-            className={cls.buttonTheme}
+            className={classes.buttonTheme}
             disabled={true}
           >
             <ThemeIcon />
           </button>
           <button
             type='button'
-            className={cls.buttonTheme}
+            className={classes.buttonTheme}
             disabled={true}
           >
             <LangIcon />

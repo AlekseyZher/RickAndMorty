@@ -3,28 +3,25 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowDropClickLarge } from '@/assets';
 import { classNames } from '@/shared/helpers';
 
-import cls from './Selector.module.scss';
+import classes from './Selector.module.scss';
 
-export interface Options {
+export interface Option {
   label: string;
   value: string;
 }
 
-interface SelectOptionContentProps {
-  value?: string;
-  label?: string;
-}
+type SelectOptionContentProps = Partial<Option>;
 
 export const DefaultSelectOptionContent = (props: SelectOptionContentProps) => {
   return <>{props.value}</>;
 };
 
 export interface SelectProps {
-  options: Options[];
+  options: Option[];
+  onChange: (value: string) => void;
   variant?: 'large' | 'small';
   value?: string;
   placeholder?: string;
-  onChange?: (value: string) => void;
   SelectorOptionComponent?: React.FC<SelectOptionContentProps>;
 }
 
@@ -32,14 +29,13 @@ export const Selector = (props: SelectProps) => {
   const {
     options,
     variant = 'large',
-    value = 'Alive',
-    placeholder,
+    placeholder = '',
     onChange,
     SelectorOptionComponent = DefaultSelectOptionContent
   } = props;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<Options | null>(null);
+  const [selected, setSelected] = useState<Option | null>(null);
   const selectRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,7 +56,7 @@ export const Selector = (props: SelectProps) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
-  const handleClickOption = (item: Options) => {
+  const handleClickOption = (item: Option) => {
     setSelected(item);
     setIsOpen(false);
     onChange?.(item.value);
@@ -68,45 +64,43 @@ export const Selector = (props: SelectProps) => {
 
   return (
     <div
-      className={classNames(cls.selector, {
-        [cls.small]: variant === 'small'
+      className={classNames(classes.selector, {
+        [classes.small]: variant === 'small'
       })}
       ref={selectRef}
     >
       <button
         type='button'
-        className={classNames(cls.button, {
-          [cls.small]: variant === 'small'
+        className={classNames(classes.button, {
+          [classes.small]: variant === 'small'
         })}
         onClick={handleClick}
       >
         {variant === 'small' ? (
-          <div className={cls.buttonInner}>
-            <SelectorOptionComponent value={selected?.label || value} />
-          </div>
+          <SelectorOptionComponent value={selected?.label || placeholder} />
         ) : (
           <SelectorOptionComponent value={selected?.label || placeholder} />
         )}
         <ArrowDropClickLarge
-          className={classNames(cls.arrowBtn, {
-            [cls.open]: isOpen,
-            [cls.small]: variant === 'small'
+          className={classNames(classes.arrowBtn, {
+            [classes.open]: isOpen,
+            [classes.small]: variant === 'small'
           })}
         />
       </button>
       {isOpen && options.length && (
         <ul
-          className={classNames(cls.selectOptions, {
-            [cls.optionsSmall]: variant === 'small'
+          className={classNames(classes.selectOptions, {
+            [classes.optionsSmall]: variant === 'small'
           })}
           role='listbox'
         >
           {options.map((item) => (
             <li
               key={item.value}
-              className={classNames(cls.selectOption, {
-                [cls.optionSelected]: item.value === selected?.value,
-                [cls.optionsSmall]: variant === 'small'
+              className={classNames(classes.selectOption, {
+                [classes.optionSelected]: item.value === selected?.value,
+                [classes.optionsSmall]: variant === 'small'
               })}
               role='option'
               onClick={() => handleClickOption(item)}

@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/helpers';
 
-import cls from './Status.module.scss';
+import classes from './Status.module.scss';
 
 const STATUS_COLORS = {
   Alive: 'green',
@@ -15,6 +15,8 @@ interface StatusProps {
 }
 
 export const Status = ({ status }: StatusProps) => {
-  const color = STATUS_COLORS[status] ?? 'orange';
-  return <div className={classNames(cls.status, {}, [cls[color]])}></div>;
+  const color = STATUS_COLORS[status];
+  return (
+    <div className={classNames(classes.status, {}, [classes[color]])}></div>
+  );
 };

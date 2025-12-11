@@ -1,4 +1,4 @@
-import type { Options } from '../components';
+import type { Option } from '../components';
 
 export const SPECIES_OPTIONS = [
   { label: 'Human', value: 'human' },
@@ -8,7 +8,7 @@ export const SPECIES_OPTIONS = [
   { label: 'Robot', value: 'robot' }
 ];
 
-export const STATUS_OPTIONS: Options[] = [
+export const STATUS_OPTIONS: Option[] = [
   { label: 'Alive', value: 'alive' },
   { label: 'Dead', value: 'dead' },
   { label: 'Unknown', value: 'unknown' }

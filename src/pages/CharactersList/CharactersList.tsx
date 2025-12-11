@@ -1,14 +1,14 @@
 import { LargeLogo } from '@/assets';
 import { Layout, Loader } from '@/shared/components';
 
-import cls from './CharactersList.module.scss';
+import classes from './CharactersList.module.scss';
 
 export const CharactersList = () => {
   return (
     <Layout>
-      <section className={`container ${cls.charactersList}`}>
+      <section className={`container ${classes.charactersList}`}>
         <img
-          className={cls.logo}
+          className={classes.logo}
           src={LargeLogo}
           alt='Logo Rick and Morty'
         />
