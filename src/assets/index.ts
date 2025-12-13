@@ -2,6 +2,7 @@ import ArrowBackIcon from './icons/arrow_back.svg?react';
 import ArrowDropClickLarge from './icons/arrow_drop_large.svg?react';
 import LangIcon from './icons/lang.svg?react';
 import LogoIcon from './icons/logo.svg?react';
+import SearchIcon from './icons/search.svg?react';
 import ThemeIcon from './icons/theme.svg?react';
 import LargeLoading from './large-loading.png';
 import LargeLogo from './large-logo.png';
@@ -15,5 +16,6 @@ export {
   LargeLogo,
   LargeLoading,
   SmallLoading,
-  ArrowDropClickLarge
+  ArrowDropClickLarge,
+  SearchIcon
 };

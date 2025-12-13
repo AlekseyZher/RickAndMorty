@@ -20,7 +20,7 @@ export interface SelectProps {
   options: Option[];
   onChange: (value: string) => void;
   value: string;
-  variant?: 'large' | 'small';
+  size?: 'large' | 'small';
   placeholder?: string;
   SelectorOptionComponent?: React.FC<SelectOptionContentProps>;
 }
@@ -28,7 +28,7 @@ export interface SelectProps {
 export const Selector = (props: SelectProps) => {
   const {
     options,
-    variant = 'large',
+    size = 'large',
     placeholder = '',
     value,
     onChange,
@@ -65,13 +65,13 @@ export const Selector = (props: SelectProps) => {
     <div
       ref={selectRef}
       className={classNames(styles.selector, {
-        [styles.small]: variant === 'small'
+        [styles.small]: size === 'small'
       })}
     >
       <button
         type='button'
         className={classNames(styles.button, {
-          [styles.small]: variant === 'small'
+          [styles.small]: size === 'small'
         })}
         onClick={handleClick}
       >
@@ -89,7 +89,7 @@ export const Selector = (props: SelectProps) => {
         <ArrowDropClickLarge
           className={classNames(styles.arrowBtn, {
             [styles.open]: isOpen,
-            [styles.small]: variant === 'small'
+            [styles.small]: size === 'small'
           })}
         />
       </button>
@@ -97,7 +97,7 @@ export const Selector = (props: SelectProps) => {
       {isOpen && options.length > 0 && (
         <ul
           className={classNames(styles.selectOptions, {
-            [styles.optionsSmall]: variant === 'small' //
+            [styles.optionsSmall]: size === 'small' //
           })}
         >
           {options.map((item) => (
@@ -105,7 +105,7 @@ export const Selector = (props: SelectProps) => {
               key={item.value}
               className={classNames(styles.selectOption, {
                 [styles.optionSelected]: item.value === value,
-                [styles.small]: variant === 'small'
+                [styles.small]: size === 'small'
               })}
               onClick={() => handleClickOption(item)}
             >
