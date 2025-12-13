@@ -1,6 +1,6 @@
-import { LargeLoading } from '@/assets';
-import { SmallLoading } from '@/assets';
-import cls from './Loader.module.scss';
+import { LargeLoading, SmallLoading } from '@/assets';
+
+import styles from './Loader.module.scss';
 
 interface LoaderProps {
   size: 'large' | 'small';
@@ -11,13 +11,13 @@ export const Loader = (props: LoaderProps) => {
   const { size, title } = props;
 
   return (
-    <div className={cls.loaderWrapper}>
+    <div className={styles.loaderWrapper}>
       <img
         src={size === 'large' ? LargeLoading : SmallLoading}
         alt='Loading...'
-        className={size === 'large' ? cls.large : cls.small}
+        className={size === 'large' ? styles.large : styles.small}
       />
-      {title && <h3 className={cls.title}>{title}</h3>}
+      {title && <h3 className={styles.title}>{title}</h3>}
     </div>
   );
 };

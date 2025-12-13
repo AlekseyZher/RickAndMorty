@@ -1,12 +1,14 @@
-import { Layout, Loader } from '@/shared/components';
 import { ArrowBackIcon } from '@/assets';
-import cls from './Character.module.scss';
+import { Layout, Loader } from '@/shared/components';
+import { classNames } from '@/shared/helpers';
+
+import styles from './Character.module.scss';
 
 export const Character = () => {
   return (
     <Layout>
-      <section className={`container ${cls.character}`}>
-        <button className={cls.backButton}>
+      <section className={classNames('container', {}, [styles.character])}>
+        <button className={styles.backButton}>
           <ArrowBackIcon />
           GO BACK
         </button>
