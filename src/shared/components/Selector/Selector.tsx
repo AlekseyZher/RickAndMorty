@@ -5,27 +5,31 @@ import { classNames } from '@/shared/helpers';
 
 import styles from './Selector.module.scss';
 
-export interface Option {
-  label: string;
-  value: string;
+export interface Option<T = string> {
+  label: T;
+  value: T;
 }
 
-type SelectOptionContentProps = Partial<Option>;
+type SelectOptionContentProps<T> = Partial<Option<T>>;
 
-export const DefaultSelectOptionContent = (props: SelectOptionContentProps) => {
+export const DefaultSelectOptionContent = <T,>(
+  props: SelectOptionContentProps<T>
+) => {
   return <>{props.label}</>;
 };
 
-export interface SelectProps {
-  options: Option[];
-  onChange: (value: string) => void;
-  value: string;
+export interface SelectProps<T> {
+  options: Option<T>[];
+  onChange: (value: T) => void;
+  value: T;
   size?: 'large' | 'small';
   placeholder?: string;
-  SelectorOptionComponent?: React.FC<SelectOptionContentProps>;
+  SelectorOptionComponent?: React.FC<SelectOptionContentProps<T>>;
 }
 
-export const Selector = (props: SelectProps) => {
+export const Selector = <T extends string | number = string>(
+  props: SelectProps<T>
+) => {
   const {
     options,
     size = 'large',
@@ -56,7 +60,7 @@ export const Selector = (props: SelectProps) => {
   }, []);
 
   const handleClick = () => setIsOpen(!isOpen);
-  const handleClickOption = (item: Option) => {
+  const handleClickOption = (item: Option<T>) => {
     setIsOpen(false);
     onChange?.(item.value);
   };

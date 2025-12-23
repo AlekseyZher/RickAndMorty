@@ -9,7 +9,7 @@ interface InputProps {
   variant?: 'underlined' | 'bordered';
   icon?: React.ReactNode;
   onClear?: () => void;
-  className?: string;
+  style?: string;
 }
 
 export const Input = ({
@@ -19,7 +19,7 @@ export const Input = ({
   variant = 'underlined',
   icon,
   onClear,
-  className = ''
+  style = ''
 }: InputProps) => {
   const showClear = Boolean(value) && typeof onClear === 'function';
   return (
@@ -32,7 +32,7 @@ export const Input = ({
             [styles.bordered]: variant === 'bordered',
             [styles.underlined]: variant === 'underlined'
           },
-          [styles[className]]
+          [styles[style]]
         )}
         value={value}
         onChange={(e) => onChange(e.target.value)}

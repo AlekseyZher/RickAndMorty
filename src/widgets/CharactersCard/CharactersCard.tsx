@@ -8,9 +8,10 @@ import {
   Status,
   type StatusesType
 } from '@/shared/components';
-import { EditButtons } from '@/shared/components/EditButtons/EditButtons';
 import { STATUS_OPTIONS } from '@/shared/constants';
 import type { Character } from '@/types';
+
+import { EditButtons } from '../EditButtons/EditButtons';
 
 import styles from './CharactersCard.module.scss';
 
@@ -23,7 +24,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
   const [readOnly, setReadOnly] = useState(true);
   const [currentName, setCurrentName] = useState(name);
   const [currentLocation, setCurrentLocation] = useState(location);
-  const [currentStatus, setCurrentStatus] = useState(status);
+  const [currentStatus, setCurrentStatus] = useState<StatusesType>(status);
 
   const onEdit = () => {
     setReadOnly(false);
@@ -45,7 +46,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
     setCurrentLocation(value);
   };
 
-  const handleStatusChange = (value: string) => {
+  const handleStatusChange = (value: StatusesType) => {
     setCurrentStatus(value);
   };
 
@@ -96,7 +97,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
             <Input
               value={currentLocation}
               onChange={handleInputLocationChange}
-              className='location'
+              style='location'
             />
           )}
         </div>
@@ -106,7 +107,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
             {readOnly ? (
               <>
                 <p className={styles.value}>{status}</p>
-                <Status status={status as StatusesType} />
+                <Status status={status} />
               </>
             ) : (
               <Selector
@@ -117,7 +118,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
                 SelectorOptionComponent={({ label }) => (
                   <>
                     <span>{label}</span>
-                    <Status status={label as StatusesType} />
+                    <Status status={label} />
                   </>
                 )}
               />

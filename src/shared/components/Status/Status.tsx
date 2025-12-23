@@ -2,19 +2,19 @@ import { classNames } from '@/shared/helpers';
 
 import styles from './Status.module.scss';
 
-const STATUS_COLORS = {
-  Alive: 'green',
-  Dead: 'red',
-  Unknown: 'orange'
-};
-
-export type StatusesType = keyof typeof STATUS_COLORS;
+export type StatusesType = 'Alive' | 'Dead' | 'Unknown';
 
 interface StatusProps {
-  status: StatusesType;
+  status?: StatusesType;
 }
 
 export const Status = ({ status }: StatusProps) => {
-  const color = STATUS_COLORS[status];
-  return <div className={classNames(styles.status, {}, [styles[color]])}></div>;
+  if (!status) return null;
+  return (
+    <div
+      className={classNames(styles.status, {}, [
+        styles[status].toLocaleLowerCase()
+      ])}
+    ></div>
+  );
 };
