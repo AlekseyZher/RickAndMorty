@@ -6,7 +6,7 @@ import { classNames } from '@/shared/helpers';
 import styles from './Selector.module.scss';
 
 export interface Option<T = string> {
-  label: T;
+  label: string;
   value: T;
 }
 
@@ -59,7 +59,7 @@ export const Selector = <T extends string | number = string>(
     };
   }, []);
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const handleClick = () => setIsOpen((prev) => !prev);
   const handleClickOption = (item: Option<T>) => {
     setIsOpen(false);
     onChange?.(item.value);
@@ -74,9 +74,7 @@ export const Selector = <T extends string | number = string>(
     >
       <button
         type='button'
-        className={classNames(styles.button, {
-          [styles.small]: size === 'small'
-        })}
+        className={styles.button}
         onClick={handleClick}
       >
         {selectedOption ? (
@@ -92,24 +90,18 @@ export const Selector = <T extends string | number = string>(
 
         <ArrowDropClickLarge
           className={classNames(styles.arrowBtn, {
-            [styles.open]: isOpen,
-            [styles.small]: size === 'small'
+            [styles.open]: isOpen
           })}
         />
       </button>
 
       {isOpen && options.length > 0 && (
-        <ul
-          className={classNames(styles.selectOptions, {
-            [styles.optionsSmall]: size === 'small' //
-          })}
-        >
+        <ul className={styles.selectOptions}>
           {options.map((item) => (
             <li
               key={item.value}
               className={classNames(styles.selectOption, {
-                [styles.optionSelected]: item.value === value,
-                [styles.small]: size === 'small'
+                [styles.optionSelected]: item.value === value
               })}
               onClick={() => handleClickOption(item)}
             >

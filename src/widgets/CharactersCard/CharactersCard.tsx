@@ -8,7 +8,7 @@ import {
   Status,
   type StatusesType
 } from '@/shared/components';
-import { STATUS_OPTIONS } from '@/shared/constants';
+import { STATUS_LABELS, STATUS_OPTIONS } from '@/shared/constants';
 import type { Character } from '@/types';
 
 import { EditButtons } from '../EditButtons/EditButtons';
@@ -97,7 +97,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
             <Input
               value={currentLocation}
               onChange={handleInputLocationChange}
-              style='location'
+              size='small'
             />
           )}
         </div>
@@ -106,8 +106,8 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
           <div className={styles.status}>
             {readOnly ? (
               <>
-                <p className={styles.value}>{status}</p>
-                <Status status={status} />
+                <p className={styles.value}>{STATUS_LABELS[status]}</p>
+                <Status status={currentStatus} />
               </>
             ) : (
               <Selector
@@ -115,10 +115,10 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
                 value={currentStatus}
                 options={STATUS_OPTIONS}
                 onChange={handleStatusChange}
-                SelectorOptionComponent={({ label }) => (
+                SelectorOptionComponent={({ label, value }) => (
                   <>
                     <span>{label}</span>
-                    <Status status={label} />
+                    <Status status={value} />
                   </>
                 )}
               />
