@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "lint:scss": "stylelint \"src/**/*.{scss,css}\"",
+    "lint:scss:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier src/. --write",
-    "fix": "npm run lint:fix && npm run format",
+    "fix": "npm run lint:fix && npm run format && npm run lint:scss:fix",
     "check": "prettier src/. --check",
     "preview": "vite preview"
   },
@@ -32,6 +34,9 @@
     "globals": "^16.5.0",
     "prettier": "3.7.2",
     "sass-embedded": "^1.93.3",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-scss": "^6.13.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",

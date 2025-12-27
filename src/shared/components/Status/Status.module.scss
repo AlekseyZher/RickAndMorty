@@ -8,14 +8,14 @@
   flex-shrink: 0;
 }
 
-.green {
+.alive {
   background-color: var(--color-status-green);
 }
 
-.red {
+.dead {
   background-color: var(--color-status-red);
 }
 
-.orange {
+.unknown {
   background-color: var(--color-status-orange);
 }
