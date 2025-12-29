@@ -13,7 +13,6 @@ export const CharactersList = () => {
           src={LargeLogo}
           alt='Logo Rick and Morty'
         />
-
         <Loader
           size='large'
           title='Loading characters...'
