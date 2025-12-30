@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type ComponentType } from 'react';
 
 import { ArrowDropClickLarge } from '@/assets';
 import { classNames } from '@/shared/helpers';
@@ -24,7 +24,7 @@ export interface SelectProps<T> {
   value: T;
   size?: 'large' | 'small';
   placeholder?: string;
-  SelectorOptionComponent?: React.FC<SelectOptionContentProps<T>>;
+  SelectorOptionComponent?: ComponentType<SelectOptionContentProps<T>>;
 }
 
 export const Selector = <T extends string | number = string>(
@@ -39,7 +39,7 @@ export const Selector = <T extends string | number = string>(
     SelectorOptionComponent = DefaultSelectOptionContent
   } = props;
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const selectedOption = options.find((item) => item.value === value) ?? null;
 

@@ -10,13 +10,13 @@
   background: transparent;
   width: 100%;
   height: 100%;
-  font-family: Roboto, sans-serif;
+  font-family: inherit;
   color: rgb(0 0 0 / 87%);
 
   &.bordered {
     width: 240px;
     height: 56px;
-    border: 1px solid rgb(0 0 0 / 38%);
+    border: 1px solid var(--color-border-gray);
     border-radius: 8px;
     padding-left: 40px;
     padding-right: 40px;
@@ -49,6 +49,7 @@
   &.small {
     font-size: 14px;
     width: 115px;
+    height: 16px;
   }
 }
 
