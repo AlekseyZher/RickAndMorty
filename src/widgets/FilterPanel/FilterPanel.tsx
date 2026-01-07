@@ -17,7 +17,7 @@ export const FilterPanel = () => {
   const [statusValue, setsStatusValue] = useState('');
 
   return (
-    <section className={styles.filterPanel}>
+    <div className={styles.filterPanel}>
       <Input
         onChange={(value) => setInputValue(value)}
         value={inputValue}
@@ -43,6 +43,6 @@ export const FilterPanel = () => {
         value={statusValue}
         placeholder='Status'
       />
-    </section>
+    </div>
   );
 };

@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 
 import { Character } from '@/pages/Character/Character';
@@ -16,6 +17,7 @@ function App() {
           element={<Character />}
         />
       </Routes>
+      <Toaster />
     </>
   );
 }
