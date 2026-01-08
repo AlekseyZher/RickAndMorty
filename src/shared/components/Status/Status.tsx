@@ -11,10 +11,6 @@ interface StatusProps {
 export const Status = ({ status = 'unknown' }: StatusProps) => {
   if (!status) return null;
   return (
-    <div
-      className={classNames(styles.status, {}, [
-        styles[status].toLocaleLowerCase()
-      ])}
-    ></div>
+    <div className={classNames(styles.status, {}, [styles[status]])}></div>
   );
 };

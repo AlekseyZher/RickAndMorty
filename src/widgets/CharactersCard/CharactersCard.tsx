@@ -9,6 +9,7 @@ import {
   type StatusesType
 } from '@/shared/components';
 import { STATUS_LABELS, STATUS_OPTIONS } from '@/shared/constants';
+import { normalizeStatus } from '@/shared/helpers';
 import type { Character } from '@/types';
 
 import { EditButtons } from '../EditButtons/EditButtons';
@@ -20,11 +21,13 @@ interface CharacterCardProps {
 }
 
 export const CharactersCard = ({ character }: CharacterCardProps) => {
-  const { name, gender, species, location, status, image } = character;
+  const { name, gender, species, location, image } = character;
+  const status = normalizeStatus(character.status);
   const [readOnly, setReadOnly] = useState(true);
   const [currentName, setCurrentName] = useState(name);
-  const [currentLocation, setCurrentLocation] = useState(location);
+  const [currentLocation, setCurrentLocation] = useState(location.name);
   const [currentStatus, setCurrentStatus] = useState<StatusesType>(status);
+  console.log(currentStatus);
 
   const onEdit = () => {
     setReadOnly(false);
@@ -92,7 +95,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
         <div className={styles.row}>
           <p className={styles.label}>Location</p>
           {readOnly ? (
-            <p className={styles.value}>{location}</p>
+            <p className={styles.value}>{location.name}</p>
           ) : (
             <Input
               value={currentLocation}
@@ -107,7 +110,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
             {readOnly ? (
               <>
                 <p className={styles.value}>{STATUS_LABELS[status]}</p>
-                <Status status={currentStatus} />
+                <Status status={currentStatus || 'unknown'} />
               </>
             ) : (
               <Selector
