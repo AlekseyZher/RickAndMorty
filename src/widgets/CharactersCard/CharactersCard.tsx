@@ -27,7 +27,6 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
   const [currentName, setCurrentName] = useState(name);
   const [currentLocation, setCurrentLocation] = useState(location.name);
   const [currentStatus, setCurrentStatus] = useState<StatusesType>(status);
-  console.log(currentStatus);
 
   const onEdit = () => {
     setReadOnly(false);
@@ -110,7 +109,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
             {readOnly ? (
               <>
                 <p className={styles.value}>{STATUS_LABELS[status]}</p>
-                <Status status={currentStatus || 'unknown'} />
+                <Status status={currentStatus} />
               </>
             ) : (
               <Selector

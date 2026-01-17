@@ -1,3 +1,5 @@
+import Crash from './crash.jpg';
+import ErrorLogo from './error-logo.png';
 import ArrowBackIcon from './icons/arrow_back.svg?react';
 import ArrowDropClickLarge from './icons/arrow_drop_large.svg?react';
 import CheckIcon from './icons/check.svg?react';
@@ -9,7 +11,6 @@ import SearchIcon from './icons/search.svg?react';
 import ThemeIcon from './icons/theme.svg?react';
 import LargeLoading from './large-loading.png';
 import LargeLogo from './large-logo.png';
-import Rick from './rick.png';
 import SmallLoading from './small-loading.png';
 
 export {
@@ -25,5 +26,6 @@ export {
   CheckIcon,
   CloseIcon,
   EditIcon,
-  Rick
+  ErrorLogo,
+  Crash
 };
