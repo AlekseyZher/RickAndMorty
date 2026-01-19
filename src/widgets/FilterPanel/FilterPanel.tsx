@@ -29,11 +29,6 @@ export const FilterPanel = ({
   status,
   onStatusChange
 }: FilterPanelProps) => {
-  // const [inputValue, setInputValue] = useState('');
-  // const [speciesValue, setSpeciesValue] = useState('');
-  // const [genderValue, setGenderValue] = useState('');
-  // const [statusValue, setStatusValue] = useState('');
-
   return (
     <div className={styles.filterPanel}>
       <Input
