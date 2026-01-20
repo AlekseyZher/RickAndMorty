@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-import { useDebounce } from '@/shared/helpers';
-import { getCharacters } from '@/shared/helpers/getCharacters/getCharacters';
+import { getCharacters, useDebounce } from '@/shared/helpers';
 import type { Character } from '@/types';
 
 export const useCharacters = (

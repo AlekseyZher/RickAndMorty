@@ -2,8 +2,7 @@ import { LargeLogo } from '@/assets';
 import { Layout, Loader } from '@/shared/components';
 import { classNames, useCharacters } from '@/shared/helpers';
 import type { Character } from '@/types';
-import { CharactersCard } from '@/widgets';
-import { FilterPanel } from '@/widgets';
+import { CharactersCard, FilterPanel } from '@/widgets';
 
 import styles from './CharactersList.module.scss';
 
