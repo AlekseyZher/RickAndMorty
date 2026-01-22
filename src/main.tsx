@@ -6,11 +6,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/App';
 import './index.scss';
+import ErrorBoundary from './shared/components';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </BrowserRouter>
   </StrictMode>
 );
