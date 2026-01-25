@@ -7,6 +7,7 @@ interface CharacterFilters {
   species?: string;
   gender?: string;
   status?: string;
+  page?: number;
 }
 
 type CharacterResponse = {
@@ -20,11 +21,11 @@ type CharacterResponse = {
 };
 
 export const getCharacters = async (
-  filters: CharacterFilters,
+  params: CharacterFilters,
   signal?: AbortSignal
 ): Promise<CharacterResponse> => {
   const response = await apiClient.get<CharacterResponse>('/character', {
-    params: filters,
+    params,
     signal
   });
   return response.data;

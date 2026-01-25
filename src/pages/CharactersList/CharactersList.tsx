@@ -1,8 +1,7 @@
 import { LargeLogo } from '@/assets';
-import { Layout, Loader } from '@/shared/components';
+import { CharactersListContent, Layout } from '@/shared/components';
 import { classNames, useCharacters } from '@/shared/helpers';
-import type { Character } from '@/types';
-import { CharactersCard, FilterPanel } from '@/widgets';
+import { FilterPanel } from '@/widgets';
 
 import styles from './CharactersList.module.scss';
 
@@ -10,13 +9,16 @@ export const CharactersList = () => {
   const {
     characters,
     loading,
+    loadingMore,
+    hasMore,
     filters: { name, species, status, gender },
-    filterActions: { setName, setSpecies, setStatus, setGender }
+    filterActions: { setName, setSpecies, setStatus, setGender },
+    loadMore
   } = useCharacters();
 
   return (
     <Layout>
-      <section className={classNames('container', {}, [styles.charactersList])}>
+      <section className={classNames('container', [styles.charactersList])}>
         <img
           className={styles.logo}
           src={LargeLogo}
@@ -32,23 +34,13 @@ export const CharactersList = () => {
           species={species}
           onSpeciesChange={setSpecies}
         />
-        {loading ? (
-          <Loader
-            size='large'
-            title='Loading characters...'
-          />
-        ) : characters.length > 0 ? (
-          <div className={styles.grid}>
-            {characters.map((character: Character) => (
-              <CharactersCard
-                key={character.id}
-                character={character}
-              />
-            ))}
-          </div>
-        ) : (
-          <h3 className={styles.empty}>Characters list is empty...</h3>
-        )}
+        <CharactersListContent
+          characters={characters}
+          loading={loading}
+          loadingMore={loadingMore}
+          hasMore={hasMore}
+          onLoadMore={loadMore}
+        />
       </section>
     </Layout>
   );
