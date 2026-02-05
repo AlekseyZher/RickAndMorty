@@ -13,7 +13,8 @@ export const CharactersList = () => {
     hasMore,
     filters: { name, species, status, gender },
     filterActions: { setName, setSpecies, setStatus, setGender },
-    loadMore
+    loadMore,
+    updateCharacter
   } = useCharacters();
 
   return (
@@ -40,6 +41,7 @@ export const CharactersList = () => {
           loadingMore={loadingMore}
           hasMore={hasMore}
           onLoadMore={loadMore}
+          onUpdateCharacter={updateCharacter}
         />
       </section>
     </Layout>

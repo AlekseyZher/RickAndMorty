@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -18,9 +18,13 @@ import styles from './CharactersCard.module.scss';
 
 interface CharacterCardProps {
   character: Character;
+  onUpdate: (updates: Partial<Character>) => void;
 }
 
-export const CharactersCard = ({ character }: CharacterCardProps) => {
+const CharactersCardComponent = ({
+  character,
+  onUpdate
+}: CharacterCardProps) => {
   const { name, gender, species, location, image } = character;
   const status = normalizeStatus(character.status);
   const [readOnly, setReadOnly] = useState(true);
@@ -33,23 +37,19 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
   };
 
   const onCancel = () => {
+    setCurrentName(name);
+    setCurrentLocation(location.name);
+    setCurrentStatus(status);
     setReadOnly(true);
   };
 
   const onSave = () => {
+    onUpdate({
+      name: currentName,
+      status: currentStatus,
+      location: { ...location, name: currentLocation }
+    });
     setReadOnly(true);
-  };
-
-  const handleInputNameChange = (value: string) => {
-    setCurrentName(value);
-  };
-
-  const handleInputLocationChange = (value: string) => {
-    setCurrentLocation(value);
-  };
-
-  const handleStatusChange = (value: StatusesType) => {
-    setCurrentStatus(value);
   };
 
   return (
@@ -71,16 +71,16 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
       <div className={styles.info}>
         {readOnly ? (
           <Link
-            to='characters/:id'
+            to={`/character/${character.id}`}
             className={styles.name}
             aria-label='go to character'
           >
-            {name}
+            {currentName}
           </Link>
         ) : (
           <Input
             value={currentName}
-            onChange={handleInputNameChange}
+            onChange={setCurrentName}
           />
         )}
         <div className={styles.row}>
@@ -94,11 +94,11 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
         <div className={styles.row}>
           <p className={styles.label}>Location</p>
           {readOnly ? (
-            <p className={styles.value}>{location.name}</p>
+            <p className={styles.value}>{currentLocation}</p>
           ) : (
             <Input
               value={currentLocation}
-              onChange={handleInputLocationChange}
+              onChange={setCurrentLocation}
               size='small'
             />
           )}
@@ -108,7 +108,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
           <div className={styles.status}>
             {readOnly ? (
               <>
-                <p className={styles.value}>{STATUS_LABELS[status]}</p>
+                <p className={styles.value}>{STATUS_LABELS[currentStatus]}</p>
                 <Status status={currentStatus} />
               </>
             ) : (
@@ -116,7 +116,7 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
                 size='small'
                 value={currentStatus}
                 options={STATUS_OPTIONS}
-                onChange={handleStatusChange}
+                onChange={setCurrentStatus}
                 SelectorOptionComponent={({ label, value }) => (
                   <>
                     <span>{label}</span>
@@ -131,3 +131,12 @@ export const CharactersCard = ({ character }: CharacterCardProps) => {
     </div>
   );
 };
+
+export const CharactersCard = memo(
+  CharactersCardComponent,
+  (prevProps, nextProps) => {
+    return prevProps.character === nextProps.character;
+  }
+);
+
+CharactersCard.displayName = 'CharactersCard';

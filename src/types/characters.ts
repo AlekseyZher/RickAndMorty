@@ -9,6 +9,11 @@ export interface Character {
     name: string;
     url: string;
   };
+  origin: {
+    name: string;
+    url: string;
+  };
+  type: string;
   status: StatusesType;
   image: string;
 }
