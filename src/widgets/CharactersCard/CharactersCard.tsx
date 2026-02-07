@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -21,10 +21,7 @@ interface CharacterCardProps {
   onUpdate: (updates: Partial<Character>) => void;
 }
 
-const CharactersCardComponent = ({
-  character,
-  onUpdate
-}: CharacterCardProps) => {
+export const CharactersCard = ({ character, onUpdate }: CharacterCardProps) => {
   const { name, gender, species, location, image } = character;
   const status = normalizeStatus(character.status);
   const [readOnly, setReadOnly] = useState(true);
@@ -131,12 +128,3 @@ const CharactersCardComponent = ({
     </div>
   );
 };
-
-export const CharactersCard = memo(
-  CharactersCardComponent,
-  (prevProps, nextProps) => {
-    return prevProps.character === nextProps.character;
-  }
-);
-
-CharactersCard.displayName = 'CharactersCard';

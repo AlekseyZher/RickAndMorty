@@ -17,13 +17,6 @@ export const useCharacterById = (id: number | null): UseCharacterByIdResult => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (id === null) {
-      setCharacter(null);
-      setLoading(false);
-      setError(null);
-      return;
-    }
-
     const controller = new AbortController();
 
     const loadCharacter = async () => {

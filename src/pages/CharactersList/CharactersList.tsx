@@ -19,7 +19,7 @@ export const CharactersList = () => {
 
   return (
     <Layout>
-      <section className={classNames('container', [styles.charactersList])}>
+      <section className={classNames('container', styles.charactersList)}>
         <img
           className={styles.logo}
           src={LargeLogo}

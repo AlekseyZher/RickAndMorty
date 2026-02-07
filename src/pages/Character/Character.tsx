@@ -14,7 +14,7 @@ export const Character = () => {
   if (loading) {
     return (
       <Layout>
-        <section className={classNames('container', [styles.character])}>
+        <section className={classNames('container', styles.character)}>
           <Link
             to='/'
             className={styles.backButton}
@@ -31,27 +31,10 @@ export const Character = () => {
     );
   }
 
-  if (error) {
+  if (error || !character) {
     return (
       <Layout>
-        <section className={classNames('container', [styles.character])}>
-          <Link
-            to='/'
-            className={styles.backButton}
-          >
-            <ArrowBackIcon />
-            GO BACK
-          </Link>
-          <p>Character not found.</p>
-        </section>
-      </Layout>
-    );
-  }
-
-  if (!character) {
-    return (
-      <Layout>
-        <section className={classNames('container', [styles.character])}>
+        <section className={classNames('container', styles.character)}>
           <Link
             to='/'
             className={styles.backButton}
@@ -67,7 +50,7 @@ export const Character = () => {
 
   return (
     <Layout>
-      <section className={classNames('container', [styles.character])}>
+      <section className={classNames('container', styles.character)}>
         <Link
           to='/'
           className={styles.backButton}
