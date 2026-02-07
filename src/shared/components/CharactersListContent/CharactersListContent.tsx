@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { Loader } from '@/shared/components';
+import { useIntersectionObserver } from '@/shared/helpers';
 import type { Character } from '@/types';
 import { CharactersCard } from '@/widgets';
 
@@ -12,33 +13,26 @@ interface CharactersListContentProps {
   loadingMore: boolean;
   hasMore: boolean;
   onLoadMore: () => void;
+  onUpdateCharacter?: (id: number, updates: Partial<Character>) => void;
 }
 
 export const CharactersListContent = (props: CharactersListContentProps) => {
-  const { characters, loading, loadingMore, hasMore, onLoadMore } = props;
+  const {
+    characters,
+    loading,
+    loadingMore,
+    hasMore,
+    onLoadMore,
+    onUpdateCharacter
+  } = props;
+
   const loaderRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loadingMore) {
-          onLoadMore();
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const currentLoader = loaderRef.current;
-    if (currentLoader) {
-      observer.observe(currentLoader);
-    }
-
-    return () => {
-      if (currentLoader) {
-        observer.unobserve(currentLoader);
-      }
-    };
-  }, [hasMore, loadingMore, onLoadMore]);
+  useIntersectionObserver(loaderRef, {
+    onIntersect: onLoadMore,
+    enabled: hasMore && !loadingMore,
+    threshold: 0.1
+  });
 
   if (loading && characters.length === 0) {
     return (
@@ -58,6 +52,7 @@ export const CharactersListContent = (props: CharactersListContentProps) => {
           <CharactersCard
             key={character.id}
             character={character}
+            onUpdate={(updates) => onUpdateCharacter?.(character.id, updates)}
           />
         ))}
       </div>

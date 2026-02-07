@@ -27,6 +27,15 @@ export const useCharacters = (
 
   const debouncedName = useDebounce(name, 500);
 
+  const updateCharacter = useCallback(
+    (id: number, updates: Partial<Character>) => {
+      setCharacters((prev) =>
+        prev.map((char) => (char.id === id ? { ...char, ...updates } : char))
+      );
+    },
+    []
+  );
+
   const reset = useCallback(() => {
     setCharacters([]);
     setPage(1);
@@ -102,6 +111,7 @@ export const useCharacters = (
     total,
     filters: { name, species, gender, status },
     filterActions: { setName, setSpecies, setGender, setStatus },
-    loadMore
+    loadMore,
+    updateCharacter
   };
 };

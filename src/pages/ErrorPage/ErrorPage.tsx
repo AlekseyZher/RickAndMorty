@@ -11,7 +11,7 @@ export const ErrorPage = () => {
 
   return (
     <Layout>
-      <section className={classNames('container', [styles.errorPage])}>
+      <section className={classNames('container', styles.errorPage)}>
         <img
           src={Crash}
           alt='Crash'
