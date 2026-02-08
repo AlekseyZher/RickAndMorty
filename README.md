@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Rick and Morty
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Учебное приложение, созданное для изучения современных технологий фронтенда.  
+Проект представляет собой SPA (одностраничное приложение), которое получает и отображает персонажей, локации и эпизоды из [Rick and Morty API](https://rickandmortyapi.com/).
 
-Currently, two official plugins are available:
+![Preview](./public/screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Стек технологий
 
-## React Compiler
+- **React 19** — с использованием новых возможностей (например, Actions)
+- **TypeScript** — строгая типизация
+- **Vite** — быстрая сборка и HMR (горячая замена модулей)
+- **React Router v7** — навигация между страницами
+- **Axios** — HTTP-запросы к API
+- **SCSS (Sass)** — стили с поддержкой вложенности и переменных
+- **SVGR** — импорт SVG как React-компонентов
+- **ESLint + Stylelint + Prettier** — контроль качества кода и единый стиль форматирования
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Зависимости
 
-## Expanding the ESLint configuration
+### Основные (`dependencies`)
+| Пакет | Назначение |
+|-------|------------|
+| `react`, `react-dom` | Библиотека для UI |
+| `react-router-dom` | Роутинг на клиенте |
+| `axios` | HTTP-клиент для запросов к API |
+| `react-hot-toast` | Уведомления (например, об ошибках) |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Dev-зависимости (`devDependencies`)
+| Пакет | Назначение |
+|-------|------------|
+| `typescript`, `@types/*` | Типизация и декларации |
+| `vite`, `@vitejs/plugin-react` | Сборка и интеграция React |
+| `eslint`, `typescript-eslint`, `globals`, `@eslint/js` | Линтинг JS/TS |
+| `eslint-plugin-import`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` | Правила для импортов, хуков и HMR |
+| `prettier` | Автоматическое форматирование кода |
+| `stylelint`, `stylelint-config-standard-scss`, `sass-embedded` | Проверка и форматирование SCSS |
+| `vite-plugin-svgr` | Конвертация SVG в React-компоненты|
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔧 Как запустить локально
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Клонируй репозиторий:
+   ```bash
+   git clone https://github.com/your-username/rickandmorty.git
+   cd rickandmorty
+2. Установи зависимости:
+   ```bash
+   npm install
+3. Запусти в режиме разработки:
+   ```bash
+   npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Доступные скрипты
+| Команда | Описание |
+|-------|------------|
+| `npm run dev` | Запуск dev-сервера |
+| `npm run build` | Сборка для продакшена |
+| `npm run preview` | Предпросмотр продакшн-сборки |
+| `npm run lint` | Проверка ESLint |
+| `npm run lint:fix` | Автофикс ESLint |
+| `npm run lint:scss` | Проверка Stylelint |
+| `npm run lint:scss:fix` |  Автофикс Stylelint |
+| `npm run format` |  Форматирование Prettier |
+| `npm run fix` |   Полный автофикс (lint + scss + format) |
+| `npm run check` |  Проверка форматирования |

@@ -10,7 +10,7 @@ import ErrorBoundary from './shared/components';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/RickAndMorty'>
       <ErrorBoundary>
         <App />
       </ErrorBoundary>
