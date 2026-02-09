@@ -57,9 +57,9 @@ export const useCharacters = (
         const data = await getCharacters(
           {
             name: debouncedName,
-            species: species,
-            gender: gender,
-            status: status,
+            species,
+            gender,
+            status,
             page
           },
           controller.signal
@@ -79,11 +79,15 @@ export const useCharacters = (
         if (!axios.isCancel(error)) {
           if (page === 1) {
             setCharacters([]);
+            toast.error("Couldn't load characters", {
+              duration: 4000,
+              position: 'bottom-right'
+            });
+          } else {
+            setHasMore(false);
           }
-          toast.error("Couldn't load characters", {
-            duration: 4000,
-            position: 'bottom-right'
-          });
+        } else {
+          setHasMore(false);
         }
       } finally {
         if (!controller.signal.aborted) {
