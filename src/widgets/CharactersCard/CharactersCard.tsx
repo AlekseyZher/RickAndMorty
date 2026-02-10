@@ -93,11 +93,13 @@ export const CharactersCard = ({ character, onUpdate }: CharacterCardProps) => {
           {readOnly ? (
             <p className={styles.value}>{currentLocation}</p>
           ) : (
-            <Input
-              value={currentLocation}
-              onChange={setCurrentLocation}
-              size='small'
-            />
+            <div className={styles.inputWrapper}>
+              <Input
+                value={currentLocation}
+                onChange={setCurrentLocation}
+                size='small'
+              />
+            </div>
           )}
         </div>
         <div className={styles.row}>

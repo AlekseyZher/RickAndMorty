@@ -45,6 +45,14 @@ export const CharactersListContent = (props: CharactersListContentProps) => {
     );
   }
 
+  if (!loading && characters.length === 0) {
+    return (
+      <div className={styles.center}>
+        <p>Characters list is empty...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.grid}>

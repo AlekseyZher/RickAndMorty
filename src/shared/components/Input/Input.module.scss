@@ -2,9 +2,12 @@
   position: relative;
   display: flex;
   align-items: center;
+  overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .inputInternal {
+  box-sizing: border-box;
   border: none;
   outline: none;
   background: transparent;
@@ -12,6 +15,9 @@
   height: 100%;
   font-family: inherit;
   color: rgb(0 0 0 / 87%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &.bordered {
     width: 240px;
@@ -48,8 +54,14 @@
 
   &.small {
     font-size: 14px;
-    width: 115px;
+    max-width: 115px;
+    width: 100%;
     height: 16px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
   }
 }
 

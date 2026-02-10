@@ -10,14 +10,16 @@
   --color-status-orange: #f90;
   --color-shadow: #cccbcb;
   --color-border: #00000080;
-  --color-border-gray: #393939;
+  --color-border-gray: #aaa;
   --color-border-image: #f2f2f7;
 }
 
 body {
   height: 100vh;
+  width: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .container {
