@@ -1,28 +1,32 @@
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { NotFoundPage } from '@/pages';
-import { Character } from '@/pages/Character/Character';
-import { CharactersList } from '@/pages/CharactersList/CharactersList';
+import { Character, CharactersList, NotFoundPage } from '@/pages';
+
+import ErrorBoundary from '@/shared/components';
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route
-          index
-          element={<CharactersList />}
-        />
-        <Route
-          path='/character/:id'
-          element={<Character />}
-        />
-        <Route
-          path='*'
-          element={<NotFoundPage />}
-        />
-      </Routes>
-      <Toaster />
+      <BrowserRouter basename='/RickAndMorty'>
+        <ErrorBoundary>
+          <Routes>
+            <Route
+              index
+              element={<CharactersList />}
+            />
+            <Route
+              path='/character/:id'
+              element={<Character />}
+            />
+            <Route
+              path='*'
+              element={<NotFoundPage />}
+            />
+          </Routes>
+          <Toaster />
+        </ErrorBoundary>
+      </BrowserRouter>
     </>
   );
 }
