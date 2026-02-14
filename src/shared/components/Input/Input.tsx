@@ -1,27 +1,28 @@
+import { type ReactNode } from 'react';
+
 import { classNames } from '@/shared/helpers';
 
 import styles from './Input.module.scss';
 
 interface InputProps {
   value: string;
-  onChange: (value: string) => void;
   placeholder?: string;
-  variant?: 'underlined' | 'bordered';
-  icon?: React.ReactNode;
-  onClear?: () => void;
   size?: 'large' | 'small';
+  variant?: 'underlined' | 'bordered';
+  icon?: ReactNode;
+  showClear?: boolean;
+  onChange: (value: string) => void;
 }
 
 export const Input = ({
   value,
-  onChange,
   placeholder = '',
   variant = 'underlined',
   icon,
-  onClear,
-  size = 'large'
+  size = 'large',
+  showClear = false,
+  onChange
 }: InputProps) => {
-  const showClear = Boolean(value) && typeof onClear === 'function';
   return (
     <div className={styles.input}>
       {icon && <div className={styles.icon}>{icon}</div>}
@@ -39,7 +40,7 @@ export const Input = ({
         <button
           type='button'
           className={styles.clearButton}
-          onClick={onClear}
+          onClick={() => onChange('')}
         >
           ×
         </button>
