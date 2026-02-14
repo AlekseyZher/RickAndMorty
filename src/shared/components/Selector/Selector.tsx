@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef, type ComponentType } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  type ComponentType,
+  useCallback
+} from 'react';
 
 import { ArrowDropClickLarge } from '@/assets';
 import { classNames } from '@/shared/helpers';
@@ -20,10 +26,10 @@ export const DefaultSelectOptionContent = <T,>(
 
 export interface SelectProps<T> {
   options: Option<T>[];
-  onChange: (value: T) => void;
   value: T;
   size?: 'large' | 'small';
   placeholder?: string;
+  onChange: (value: T) => void;
   SelectorOptionComponent?: ComponentType<SelectOptionContentProps<T>>;
 }
 
@@ -32,9 +38,9 @@ export const Selector = <T extends string | number = string>(
 ) => {
   const {
     options,
+    value,
     size = 'large',
     placeholder = '',
-    value,
     onChange,
     SelectorOptionComponent = DefaultSelectOptionContent
   } = props;
@@ -43,21 +49,21 @@ export const Selector = <T extends string | number = string>(
   const selectRef = useRef<HTMLDivElement>(null);
   const selectedOption = options.find((item) => item.value === value) ?? null;
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (
+      selectRef.current &&
+      !selectRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
   }, []);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   const handleClick = () => setIsOpen((prev) => !prev);
   const handleClickOption = (item: Option<T>) => {

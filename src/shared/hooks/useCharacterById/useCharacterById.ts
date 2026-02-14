@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import { getCharacterById } from '@/shared/helpers';
+import { getCharacterById } from '@/api';
 import type { Character } from '@/types';
 
 interface UseCharacterByIdResult {

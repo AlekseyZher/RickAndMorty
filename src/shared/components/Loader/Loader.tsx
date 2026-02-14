@@ -17,7 +17,7 @@ export const Loader = (props: LoaderProps) => {
         alt='Loading...'
         className={size === 'large' ? styles.large : styles.small}
       />
-      {title && <h3 className={styles.title}>{title}</h3>}
+      {title && <p className={styles.title}>{title}</p>}
     </div>
   );
 };

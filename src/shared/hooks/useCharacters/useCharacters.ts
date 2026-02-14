@@ -3,8 +3,10 @@ import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-import { getCharacters, useDebounce } from '@/shared/helpers';
+import { getCharacters } from '@/api';
 import type { Character } from '@/types';
+
+import { useDebounce } from '../useDebounce/useDebounce';
 
 export const useCharacters = (
   initialFilters = {

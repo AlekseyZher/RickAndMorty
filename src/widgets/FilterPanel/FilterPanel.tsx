@@ -10,51 +10,52 @@ import styles from './FilterPanel.module.scss';
 
 interface FilterPanelProps {
   name: string;
-  onNameChange: (value: string) => void;
   species: string;
-  onSpeciesChange: (value: string) => void;
   gender: string;
-  onGenderChange: (value: string) => void;
   status: string;
+  onNameChange: (value: string) => void;
+  onSpeciesChange: (value: string) => void;
+  onGenderChange: (value: string) => void;
   onStatusChange: (value: string) => void;
 }
 
 export const FilterPanel = ({
   name,
-  onNameChange,
   species,
-  onSpeciesChange,
   gender,
-  onGenderChange,
   status,
+  onNameChange,
+  onSpeciesChange,
+  onGenderChange,
   onStatusChange
 }: FilterPanelProps) => {
   return (
     <div className={styles.filterPanel}>
       <Input
-        onChange={onNameChange}
         value={name}
         variant='bordered'
         placeholder='Filter by name...'
         icon={<SearchIcon />}
+        showClear={Boolean(name)}
+        onChange={onNameChange}
       />
       <Selector
-        onChange={onSpeciesChange}
-        options={SPECIES_OPTIONS}
         value={species}
         placeholder='Species'
+        options={SPECIES_OPTIONS}
+        onChange={onSpeciesChange}
       />
       <Selector
-        onChange={onGenderChange}
-        options={GENDER_OPTIONS}
         value={gender}
         placeholder='Gender'
+        options={GENDER_OPTIONS}
+        onChange={onGenderChange}
       />
       <Selector
-        onChange={onStatusChange}
-        options={STATUS_OPTIONS}
         value={status}
         placeholder='Status'
+        options={STATUS_OPTIONS}
+        onChange={onStatusChange}
       />
     </div>
   );
