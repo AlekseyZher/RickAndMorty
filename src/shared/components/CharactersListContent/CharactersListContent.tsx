@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
 import { Loader } from '@/shared/components';
-import { useIntersectionObserver } from '@/shared/helpers';
+import { useIntersectionObserver } from '@/shared/hooks';
 import type { Character } from '@/types';
 import { CharactersCard } from '@/widgets';
 

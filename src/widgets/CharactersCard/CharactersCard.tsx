@@ -9,6 +9,7 @@ import {
   type StatusesType
 } from '@/shared/components';
 import { STATUS_LABELS, STATUS_OPTIONS } from '@/shared/constants';
+import { ROUTES } from '@/shared/constants/routes';
 import { normalizeStatus } from '@/shared/helpers';
 import type { Character } from '@/types';
 
@@ -68,7 +69,7 @@ export const CharactersCard = ({ character, onUpdate }: CharacterCardProps) => {
       <div className={styles.info}>
         {readOnly ? (
           <Link
-            to={`/character/${character.id}`}
+            to={ROUTES.CHARACTER_BY_ID(character.id)}
             className={styles.name}
             aria-label='go to character'
           >
@@ -96,8 +97,8 @@ export const CharactersCard = ({ character, onUpdate }: CharacterCardProps) => {
             <div className={styles.inputWrapper}>
               <Input
                 value={currentLocation}
-                onChange={setCurrentLocation}
                 size='small'
+                onChange={setCurrentLocation}
               />
             </div>
           )}
